@@ -1,0 +1,134 @@
+SORTING : Sorting is the process of arranging elements in a list or collection in a specific order.
+This order is usually either ascending (smallest to largest) or descending (largest to smallest), based on a particular criterion, such as numerical value, alphabetical order, or any custom comparison rule.
+
+/*******************************************/
+1 SELECTION SORT :  select minimum or maximum  element of the array and push it on the correct place
+
+TimeComplexity : O(N*N)
+
+/******************************************/
+public class Selection_Sort {
+
+    // create a swap function
+    public static void swap(int arr[] , int left , int right){
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+    }
+
+    public static void selectionSort(int arr[]){
+        int n = arr.length; // size of array
+        for(int i = 0; i<n-1; i++){
+            int mini = i; // to store minimum value index
+            for(int j = i+1; j<n; j++){
+
+                // check if arr[j] is minimum than arr[mini] then store j into mini
+                if(arr[j] < arr[mini] ){
+                    mini = j;
+                }
+            }
+            // swap current mini and previous mini
+            swap(arr , i , mini);
+        }
+        System.out.print("The array after sorting : ");
+        for(int i = 0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    // TC : O(n*n) // SC : O(1)
+    public static void main(String args[]){
+        int arr[] = {13, 46, 24, 52, 20, 9};
+        System.out.print("The array before sorting : ");
+        for(int i = 0; i<arr.length; i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        selectionSort(arr);           
+    }
+}
+
+/***********************************/
+
+2. BUBBLE SORT :  push the maximum element to the last by adjacent swapp    // TC : O(N^2) if any swap will done // WORST CASE TC
+                                                                           // TC : O(N) if no swapping done means array is in accending order : Best case timecomplexity
+/*****************************************/
+
+public class Bubble_Sort {
+
+    public static void bubbleSort(int arr[]){
+        int n = arr.length;
+        for(int i = n-1; i >= 0; i--){
+            int countSwap = 0;
+            for(int j = 0; j <= i-1; j++){
+                // check conditions
+                if(arr[j] > arr[j+1]){
+                  
+                    // swap arr[j] & arr[j+1]
+                    int temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                    countSwap = 1;
+                }  
+            }
+            if(countSwap == 0) break; // means the array is in accending order // TC : O(n) only if array is in accending order
+        }
+        System.out.print("The array after bubble sort Sorting : ");
+        for(int i = 0; i < n; i++){
+         System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+
+    } // TC : O(n)*O(n) // SC : O(1)
+
+
+    public static void main(String args[]){
+        int arr[] = {13, 46, 24, 52, 20, 9};
+        System.out.print("The Array before sorting : ");
+        for(int i = 0; i<arr.length; i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        bubbleSort(arr);
+    }
+}
+
+/************************************************/
+
+3 . INSERTION SORT : it always take one element and place it on its correct order
+TIME COMPLEXITY : O(n^2)  Worst & Average case TC 
+BEST case TC : O(N)
+
+/************************************************/
+public class Insertion_Sort {
+
+    public static void insertionSort(int arr[]){
+        int n = arr.length;
+        for(int i = 0; i<n; i++){
+            int j = i;
+            while(j > 0 && arr[j-1] > arr[j]){
+                // swap
+                int temp = arr[j-1];
+                arr[j-1] = arr[j];
+                arr[j] = temp;
+                j--;
+            }
+        }
+        System.out.print("The array after inserion sort : ");
+            for(int i = 0; i<n; i++){
+                System.out.print(arr[i] + " ");
+            }
+           System.out.println();
+    }
+    public static void main(String args[]){
+        int arr[] = {13, 46, 24, 52, 20, 9};
+        System.out.print("array before insertion sort : ");
+        for(int i = 0; i<arr.length; i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        insertionSort(arr);
+    }
+}
+
+/**************************************************************/
